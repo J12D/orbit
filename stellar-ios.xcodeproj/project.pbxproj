@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		6619A6411991E55500441B63 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6619A6401991E55500441B63 /* Wallet.swift */; };
 		6619A64319995D6B00441B63 /* Trustline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6619A64219995D6B00441B63 /* Trustline.swift */; };
-		6687F3281999830E00B2FCE0 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6687F3271999830E00B2FCE0 /* SwiftyJSON.swift */; };
 		6687F32D199AD43200B2FCE0 /* TrustlineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6687F32C199AD43100B2FCE0 /* TrustlineCell.swift */; };
 		66C32BA1198E71FF006D4AE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C32BA0198E71FF006D4AE5 /* AppDelegate.swift */; };
 		66C32BA3198E71FF006D4AE5 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C32BA2198E71FF006D4AE5 /* MasterViewController.swift */; };
@@ -17,7 +16,6 @@
 		66C32BA8198E7200006D4AE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66C32BA6198E7200006D4AE5 /* Main.storyboard */; };
 		66C32BAA198E7200006D4AE5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66C32BA9198E7200006D4AE5 /* Images.xcassets */; };
 		66C32BB6198E7200006D4AE5 /* stellar_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C32BB5198E7200006D4AE5 /* stellar_iosTests.swift */; };
-		66EE7B06199179C1000A1625 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EE7B05199179C1000A1625 /* Alamofire.swift */; };
 		690856CEF4C86756672CF628 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 590E3C9AA1C60BE0807C35C6 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,7 +36,6 @@
 		6619A6401991E55500441B63 /* Wallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		6619A64219995D6B00441B63 /* Trustline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trustline.swift; sourceTree = "<group>"; };
 		6653514E198E7CBD00AC452E /* stellar-ios-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "stellar-ios-Bridging-Header.h"; sourceTree = "<group>"; };
-		6687F3271999830E00B2FCE0 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		6687F32C199AD43100B2FCE0 /* TrustlineCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrustlineCell.swift; sourceTree = "<group>"; };
 		66C32B9B198E71FF006D4AE5 /* stellar-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "stellar-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66C32B9F198E71FF006D4AE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -50,7 +47,6 @@
 		66C32BAF198E7200006D4AE5 /* stellar-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "stellar-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66C32BB4198E7200006D4AE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66C32BB5198E7200006D4AE5 /* stellar_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stellar_iosTests.swift; sourceTree = "<group>"; };
-		66EE7B05199179C1000A1625 /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = alamofire/Source/Alamofire.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,8 +138,6 @@
 				6687F329199AA61D00B2FCE0 /* Models */,
 				6687F32A199AA65300B2FCE0 /* Controllers */,
 				66C32BA0198E71FF006D4AE5 /* AppDelegate.swift */,
-				66EE7B05199179C1000A1625 /* Alamofire.swift */,
-				6687F3271999830E00B2FCE0 /* SwiftyJSON.swift */,
 				66C32BA6198E7200006D4AE5 /* Main.storyboard */,
 				66C32BA9198E7200006D4AE5 /* Images.xcassets */,
 				66C32B9E198E71FF006D4AE5 /* Supporting Files */,
@@ -224,6 +218,7 @@
 		66C32B93198E71FF006D4AE5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = vjkaruna;
 				TargetAttributes = {
@@ -332,8 +327,6 @@
 				66C32BA5198E71FF006D4AE5 /* DetailViewController.swift in Sources */,
 				6619A64319995D6B00441B63 /* Trustline.swift in Sources */,
 				66C32BA3198E71FF006D4AE5 /* MasterViewController.swift in Sources */,
-				66EE7B06199179C1000A1625 /* Alamofire.swift in Sources */,
-				6687F3281999830E00B2FCE0 /* SwiftyJSON.swift in Sources */,
 				66C32BA1198E71FF006D4AE5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -402,7 +395,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				METAL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -439,7 +432,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

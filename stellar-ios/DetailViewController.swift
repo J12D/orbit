@@ -15,7 +15,7 @@ class DetailViewController: UIViewController, UISplitViewControllerDelegate {
     var masterPopoverController: UIPopoverController? = nil
 
 
-    var detailItem: AnyObject? {
+    var detailItem: Trustline? {
         didSet {
             // Update the view.
             self.configureView()
@@ -28,12 +28,12 @@ class DetailViewController: UIViewController, UISplitViewControllerDelegate {
 
     func configureView() {
         // Update the user interface for the detail item.
-        if let detail: AnyObject = self.detailItem {
+        if let trustline = self.detailItem {
             if let label = self.detailDescriptionLabel {
-                label.text = detail.description
+                label.text = trustline.description
             }
             if let acc_label = self.accountLabel {
-                acc_label.text = (detail as Trustline).account
+                acc_label.text = trustline.account
             }
         }
     }

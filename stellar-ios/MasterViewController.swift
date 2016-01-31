@@ -8,6 +8,8 @@
 
 import UIKit
 import WebKit
+import Alamofire
+import SwiftyJSON
 
 class MasterViewController: UITableViewController, WKScriptMessageHandler {
 
@@ -19,7 +21,7 @@ class MasterViewController: UITableViewController, WKScriptMessageHandler {
     var webView: WKWebView?
     var origView: UIView?
     
-    func userContentController(userContentController: WKUserContentController!, didReceiveScriptMessage message:WKScriptMessage!){
+    func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message:WKScriptMessage){
         
         
         // println("got message: \(message.body)")
@@ -40,15 +42,15 @@ class MasterViewController: UITableViewController, WKScriptMessageHandler {
         // self.view = self.origView!
 
         // var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(message.body as NSData, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
-        var sentData = message.body as NSDictionary
-        println(sentData)
+        let sentData = message.body as! NSDictionary
+        print(sentData)
         // self.navigationController.navigationItem.title = sentData["username"] as NSString
         
-        var secret = sentData["secret"] as NSString
-        var account = sentData["account"] as NSString
-        var myid = sentData["id"] as NSString
+        let secret = sentData["secret"] as? NSString
+        let account = sentData["account"] as? NSString
+        //let myid = sentData["id"] as? NSString
         
-        println("secret:\(secret) account:\(account)")
+        print("secret:\(secret) account:\(account)")
         
         /**
         let manager = AFHTTPRequestOperationManager()
@@ -64,21 +66,27 @@ class MasterViewController: UITableViewController, WKScriptMessageHandler {
             })
         **/
         
-        Alamofire.request(.POST, "https://live.stellar.org:9002", parameters: ["method":"account_lines", "params":[["account":"\(account)"]]], encoding: .JSON(options: nil))
+        Alamofire.request(.POST, "https://live.stellar.org:9002", parameters: ["method":"account_lines", "params":[["account":"\(account)"]]])
             .response { (request, response, data, error) in
+                guard let d : NSData = data else {
+                    assert(false)
+                }
                 self.webView!.hidden = true
                 // self.navigationItem. = UIBarButtonItem(title: "Trustlines", style: .Plain, target: self, action: nil)
-                let JSON = JSONValue(data as NSData)
-                println(JSON["result"]["lines"][0])
+                let json = JSON(d)
+                print(json["result"]["lines"][0])
                 // let tlvals = JSON!.valueForKeyPath("result")!.valueForKeyPath("lines")! as Array<Dictionary<String, AnyObject>>
-                let tlvals = JSON["result"]["lines"].array
+                let tlvals = json["result"]["lines"].array
                 var new_trustlines = [Trustline]()
                 if tlvals!.count > 0 {
-                    tlvals!.map { dict in println(dict["currency"].string) }
+                    for dic in tlvals! {
+                        print(dic["currency"].string)
+                    }
+                    //tlvals!.map { dict in print(dict["currency"].string) }
                     new_trustlines = tlvals!.map { dict in Trustline(json:dict) }
                 }
                 for tl in new_trustlines {
-                    println(tl.limit)
+                    print(tl.limit)
                     self.insertNewObject(tl)
                 }
         }
@@ -106,11 +114,12 @@ class MasterViewController: UITableViewController, WKScriptMessageHandler {
         super.viewDidLoad()
         
         // sample url running a stripped-down reference web client that will post data back to WKWebView
-        let url = NSURL(string: "http://stellar-client-webkit.s3-website-us-west-2.amazonaws.com/#/login")
+        guard let url = NSURL(string: "http://stellar-client-webkit.s3-website-us-west-2.amazonaws.com/#/login")
+            else {assert(false)}
         let req = NSURLRequest(URL: url)
         
         //changes from last post
-        var theConfiguration = WKWebViewConfiguration()
+        let theConfiguration = WKWebViewConfiguration()
         theConfiguration.userContentController.addScriptMessageHandler(self,
             name: "interOp")
         self.webView = WKWebView(frame:self.view.frame,
@@ -122,10 +131,10 @@ class MasterViewController: UITableViewController, WKScriptMessageHandler {
         self.view.addSubview(self.webView!)
         self.webView!.loadRequest(req)
         
-        self.wallpaper = UIImageView(frame:self.navigationController.view.bounds)
+        self.wallpaper = UIImageView(frame:self.navigationController!.view.bounds)
         self.wallpaper!.image = UIImage(named:"wallpaper-default")
         self.wallpaper!.contentMode = .Left
-        self.navigationController.view.insertSubview(wallpaper!,atIndex:0)
+        self.navigationController?.view.insertSubview(wallpaper!,atIndex:0)
         
         //self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Login", style: .Plain, target: self, action: nil)
   
@@ -149,8 +158,8 @@ class MasterViewController: UITableViewController, WKScriptMessageHandler {
         // Dispose of any resources that can be recreated.
     }
 
-    func insertNewObject(sender: AnyObject) {
-        trustlines.append(sender as Trustline)
+    func insertNewObject(sender: Trustline) {
+        trustlines.append(sender)
         let indexPath = NSIndexPath(forRow: trustlines.count-1, inSection: 0)
         self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     }
@@ -159,9 +168,9 @@ class MasterViewController: UITableViewController, WKScriptMessageHandler {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
-            let indexPath = self.tableView.indexPathForSelectedRow()
-            let tl = trustlines[indexPath.row] as Trustline
-            ((segue.destinationViewController as UINavigationController).topViewController as DetailViewController).detailItem = tl
+            if let row = self.tableView.indexPathForSelectedRow?.row, tl = trustlines[row] as? Trustline {
+            ((segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController).detailItem = tl
+            }
         }
     }
 
@@ -176,12 +185,12 @@ class MasterViewController: UITableViewController, WKScriptMessageHandler {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as TrustlineCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! TrustlineCell
 
         let tl = trustlines[indexPath.row] as Trustline
-        println("Row \(indexPath.row) \(tl.limit)")
-        if (tl != nil && tl.account != nil) {
-            let acc = tl.account!.substringToIndex(advance(tl.account!.startIndex, 16))
+        print("Row \(indexPath.row) \(tl.limit)")
+        if (tl.account != nil) {
+            let acc = tl.account!.substringToIndex(tl.account!.startIndex.advancedBy(16))
             cell.accountLabel!.text = "\(acc)..."
             cell.balanceLabel!.text = "\(tl.balance!)"
             cell.limitLabel!.text = "/ \(tl.limit!)"

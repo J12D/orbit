@@ -142,8 +142,7 @@ enum JSONValue {
     
     init (_ data: NSData!){
         if let value = data{
-            var error:NSError? = nil
-            if let jsonObject : AnyObject = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error) {
+            if let jsonObject : AnyObject = NSJSONSerialization.JSONObjectWithData(data, options: nil) {
                 self = JSONValue(jsonObject)
             }else{
                 self = JSONValue.JInvalid(NSError(domain: "JSONErrorDomain", code: 1001, userInfo: [NSLocalizedDescriptionKey:"JSON Parser Error: Invalid Raw JSON Data"]))
@@ -247,7 +246,7 @@ enum JSONValue {
     }
 }
 
-extension JSONValue: Printable {
+extension JSONValue: CustomStringConvertible {
     var description: String {
         switch self {
         case .JInvalid(let error):
@@ -313,7 +312,7 @@ extension JSONValue: Printable {
             return objectString
         case .JArray(let array):
             var arrayString = "[\n"
-            for (index, value) in enumerate(array) {
+            for (index, value) in array.enumerate() {
                 let valueString = value._printableString(indent + "  ")
                 if index != array.count - 1 {
                     arrayString += "\(indent)  \(valueString),\n"

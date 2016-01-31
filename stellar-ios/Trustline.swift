@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class Trustline {
     var currency: String?
@@ -14,12 +15,12 @@ class Trustline {
     var limit: Int?
     var balance: Int?
     
-    init(json: JSONValue) {
-        println("in init trustline")
+    init(json: JSON) {
+        print("in init trustline")
         currency = json["currency"].string
         account = json["account"].string
-        limit = json["limit"].integer
-        balance = json["balance"].integer
+        limit = json["limit"].int
+        balance = json["balance"].int
     }
     
     var description: String {
