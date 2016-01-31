@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5C8A072EBD224616B5C1405A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F30C075A7B8649A5ADB12E07 /* libPods.a */; };
 		6619A6411991E55500441B63 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6619A6401991E55500441B63 /* Wallet.swift */; };
 		6619A64319995D6B00441B63 /* Trustline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6619A64219995D6B00441B63 /* Trustline.swift */; };
 		6687F3281999830E00B2FCE0 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6687F3271999830E00B2FCE0 /* SwiftyJSON.swift */; };
@@ -19,6 +18,7 @@
 		66C32BAA198E7200006D4AE5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66C32BA9198E7200006D4AE5 /* Images.xcassets */; };
 		66C32BB6198E7200006D4AE5 /* stellar_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C32BB5198E7200006D4AE5 /* stellar_iosTests.swift */; };
 		66EE7B06199179C1000A1625 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EE7B05199179C1000A1625 /* Alamofire.swift */; };
+		690856CEF4C86756672CF628 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 590E3C9AA1C60BE0807C35C6 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +32,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1635E34926B402EA5E527CEA /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		289C69135BC8E4A46C29FEC3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		590E3C9AA1C60BE0807C35C6 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6619A6401991E55500441B63 /* Wallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		6619A64219995D6B00441B63 /* Trustline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trustline.swift; sourceTree = "<group>"; };
 		6653514E198E7CBD00AC452E /* stellar-ios-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "stellar-ios-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -48,8 +51,6 @@
 		66C32BB4198E7200006D4AE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66C32BB5198E7200006D4AE5 /* stellar_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stellar_iosTests.swift; sourceTree = "<group>"; };
 		66EE7B05199179C1000A1625 /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = alamofire/Source/Alamofire.swift; sourceTree = SOURCE_ROOT; };
-		B1840C34317D4EFA9AA3634B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		F30C075A7B8649A5ADB12E07 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C8A072EBD224616B5C1405A /* libPods.a in Frameworks */,
+				690856CEF4C86756672CF628 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,9 +75,18 @@
 		3212A7A24A524913B3C01094 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F30C075A7B8649A5ADB12E07 /* libPods.a */,
+				590E3C9AA1C60BE0807C35C6 /* Pods.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4A3A1D15011ACB026A616CB8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1635E34926B402EA5E527CEA /* Pods.debug.xcconfig */,
+				289C69135BC8E4A46C29FEC3 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		6687F329199AA61D00B2FCE0 /* Models */ = {
@@ -111,8 +121,8 @@
 				66C32B9D198E71FF006D4AE5 /* stellar-ios */,
 				66C32BB2198E7200006D4AE5 /* stellar-iosTests */,
 				66C32B9C198E71FF006D4AE5 /* Products */,
-				B1840C34317D4EFA9AA3634B /* Pods.xcconfig */,
 				3212A7A24A524913B3C01094 /* Frameworks */,
+				4A3A1D15011ACB026A616CB8 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -179,6 +189,7 @@
 				66C32B98198E71FF006D4AE5 /* Frameworks */,
 				66C32B99198E71FF006D4AE5 /* Resources */,
 				40E2E805B79546079C3A801B /* Copy Pods Resources */,
+				7E76DCCDAFC94EE4ED82FB20 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -276,7 +287,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7E76DCCDAFC94EE4ED82FB20 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E220CDE4AA2F43BFA042EC00 /* Check Pods Manifest.lock */ = {
@@ -423,7 +449,7 @@
 		};
 		66C32BBA198E7200006D4AE5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B1840C34317D4EFA9AA3634B /* Pods.xcconfig */;
+			baseConfigurationReference = 1635E34926B402EA5E527CEA /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -438,7 +464,7 @@
 		};
 		66C32BBB198E7200006D4AE5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B1840C34317D4EFA9AA3634B /* Pods.xcconfig */;
+			baseConfigurationReference = 289C69135BC8E4A46C29FEC3 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
